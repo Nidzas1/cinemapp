@@ -35,6 +35,14 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.post('/register', (req, res) => {
+    const { email, password, name } = req.body
+    const role = 'USER'
+    db.query('INSERT INTO accounts(email,password,name,role) VALUES($1,$2,$3,$4)', [email, password, name, role], () => {
+        console.log('user inserted into database.')
+    })
+})
+
 app.get('/accounts', validateToken, (req, res) => {
     db.query('SELECT * FROM accounts', (err, result) => {
         res.send(result.rows)
