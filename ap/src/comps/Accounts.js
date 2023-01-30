@@ -30,7 +30,7 @@ const Accounts = () => {
 
     return (
         <div>
-            {auth && account.role == 'USER' ?
+            {auth && account.role === 'USER' ?
                 <div>
                     <h1>You can view this page</h1>
                     <h2>Welcome {account.email} </h2>
