@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
-const Post = () => {
+const Accounts = () => {
 
     const [account, setAccount] = useState()
 
@@ -43,4 +43,4 @@ const Post = () => {
     )
 }
 
-export default Post
+export default Accounts
