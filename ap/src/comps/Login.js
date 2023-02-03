@@ -4,12 +4,15 @@ import { useHistory } from 'react-router-dom'
 
 const Login = () => {
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
     const history = useHistory()
 
     const Login = (e) => {
         e.preventDefault()
         axios.post('http://localhost:5000/login', {
             email: email,
+            password: password
         })
             .then(response => {
                 sessionStorage.setItem('accessToken', response.data.accessToken)
@@ -24,6 +27,7 @@ const Login = () => {
         <div>
             <form>
                 <input type='text' onChange={(e) => setEmail(e.target.value)} />
+                <input type='text' onChange={(e) => setPassword(e.target.value)} />
                 <button onClick={Login}>SUBMIT</button>
             </form>
         </div>
