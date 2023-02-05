@@ -14,7 +14,6 @@ const Accounts = () => {
         axios.get('http://localhost:5000/accounts', {
             headers: {
                 accessToken: sessionStorage.getItem('accessToken'),
-
             }
         }).then(() => {
             setAuth(sessionStorage.getItem('auth'))
