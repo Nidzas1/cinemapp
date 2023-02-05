@@ -8,6 +8,7 @@ import {
     Route,
 } from "react-router-dom";
 import Prices from "./pages/prices/Prices";
+import Reservations from "./pages/reservations/Reservations";
 const App = () => {
     return (
         <Router>
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/prices" element={<Prices />} />
+                <Route path="/reservations" element={<Reservations />} />
             </Routes>
         </Router>
     )
