@@ -4,20 +4,20 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import {
     BrowserRouter as Router,
-    Switch,
     Routes,
     Route,
-    Link
-  } from "react-router-dom";
+} from "react-router-dom";
+import Prices from "./pages/prices/Prices";
 const App = () => {
     return (
-   <Router>
-    <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login" element={<Login/>}/>
-    </Routes>
-   </Router>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/prices" element={<Prices />} />
+            </Routes>
+        </Router>
     )
 };
 

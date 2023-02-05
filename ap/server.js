@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const { validateToken } = require('./AuthMiddleware')
 const bcrypt = require('bcrypt')
 
-const { Client } = require('pg')
+const { Client } = require('pg');
 
 const db = new Client({
     host: 'localhost',
@@ -45,11 +45,11 @@ app.post('/login', async (req, res) => {
 
 app.post('/register', async (req, res) => {
     const { firstName, lastName, email, username, password } = req.body
-    
+
     const role = 'USER'
-    
+
     const hashpass = await bcrypt.hash(password, 10)
-    
+
     await db.query('INSERT INTO users(first_name,last_name,email,username,password,role) VALUES($1,$2,$3,$4,$5,$6)', [firstName, lastName, email, username, hashpass, role], () => {
         console.log('user inserted into database.')
     })
@@ -61,6 +61,38 @@ app.get('/accounts', validateToken, (req, res) => {
     })
 })
 
+app.get('/allPrices', (req, res) => {
+    db.query('select * from prices', (err, result) => {
+        res.send(result.rows)
+    })
+})
+
+app.post('/insertPrices', (req, res) => {
+
+    const { category, price } = req.body
+
+    db.query('INSERT INTO prices(category,price) VALUES($1,$2)', [category, price], () => {
+        console.log("price inserted.")
+    })
+})
+
+app.delete('/deletePrices/:id', (req, res) => {
+
+    const id = req.params.id
+
+    db.query('delete from prices where price_id = $1', [id], () => {
+        console.log('price deleted.')
+    })
+})
+
+app.post('/updatePrices/:id', (req, res) => {
+
+    const id = req.params.id
+
+    db.query('UPDATE prices(category,price) where price_id = $1', [id], () => {
+        console.log('price updated.')
+    })
+})
 
 app.listen(5000, () => {
     console.log('listening on 5k port')
