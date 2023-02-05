@@ -19,18 +19,18 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body
+    const { username, password } = req.body
 
-    await db.query('SELECT * FROM accounts WHERE email = $1', [email], async (err, result) => {
+    await db.query('SELECT * FROM users WHERE username = $1', [username], async (err, result) => {
         if (result.rowCount > 0) {
             const user = result.rows[0]
-            const hashed = user.password
+            const hashpass = user.password
 
-            const validpass = await bcrypt.compare(password, hashed)
+            const validpass = await bcrypt.compare(password, hashpass)
 
             if (validpass) {
-                const accessToken = jwt.sign(email, 'secretkey')
-                res.json({ accessToken: accessToken, user: { email: user.email, role: user.role, name: user.name }, auth: true })
+                const accessToken = jwt.sign(username, 'secretkey')
+                res.json({ accessToken: accessToken, user: { username: user.username, role: user.role, username: user.username }, auth: true })
                 console.log('user logged in.')
             }
             else {
@@ -44,12 +44,13 @@ app.post('/login', async (req, res) => {
 })
 
 app.post('/register', async (req, res) => {
-    const { email, password, name } = req.body
+    const { firstName, lastName, email, username, password } = req.body
+    
     const role = 'USER'
-
+    
     const hashpass = await bcrypt.hash(password, 10)
-
-    await db.query('INSERT INTO accounts(email,password,name,role) VALUES($1,$2,$3,$4)', [email, hashpass, name, role], () => {
+    
+    await db.query('INSERT INTO users(first_name,last_name,email,username,password,role) VALUES($1,$2,$3,$4,$5,$6)', [firstName, lastName, email, username, hashpass, role], () => {
         console.log('user inserted into database.')
     })
 })
