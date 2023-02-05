@@ -94,6 +94,13 @@ app.post('/updatePrices/:id', (req, res) => {
     })
 })
 
+app.get('/reservations/:username', (req, res) => {
+    const username  = req.params.username
+    db.query('select reservations.seat_number, users.first_name from reservations inner join users on reservations.user_id = users.user_id where users.username = $1', [username], (err, result) => {
+        res.send(result.rows)
+    })
+})
+
 app.listen(5000, () => {
     console.log('listening on 5k port')
 })
