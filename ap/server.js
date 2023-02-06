@@ -30,7 +30,7 @@ app.post('/login', async (req, res) => {
 
             if (validpass) {
                 const accessToken = jwt.sign(username, 'secretkey')
-                res.json({ accessToken: accessToken, user: { username: user.username, role: user.role, username: user.username }, auth: true })
+                res.json({ accessToken: accessToken, user: { username: user.username, role: user.role, username: user.username, userId: user.user_id }, auth: true })
                 console.log('user logged in.')
             }
             else {
@@ -94,6 +94,22 @@ app.post('/updatePrices/:id', (req, res) => {
     })
 })
 
+app.get('/movies', (req, res) => {
+    db.query('SELECT * FROM movies', (err, result) => {
+        res.send(result.rows)
+    })
+})
+
+app.post('/reserve/:movieId', (req, res) => {
+
+    const movieId  = req.params.movieId
+
+    const { seatNum, userId } = req.body
+    db.query('insert into reservations(seat_number,user_id,movie_id) values($1,$2,$3)', [seatNum, userId, movieId], () => {
+        console.log('values inserted.')
+    })
+})
+
 app.get('/reservations/:username', (req, res) => {
     const username = req.params.username
     db.query('select users.first_name, movies.title,movies.image,reservations.seat_number,reservations.reservation_id from reservations inner join users on reservations.user_id = users.user_id inner join movies on reservations.movie_id = movies.movie_id where users.username = $1', [username], (err, result) => {
@@ -111,6 +127,7 @@ app.get('/premiere', (req, res) => {
         }
     })
 })
+
 
 app.listen(5000, () => {
     console.log('listening on 5k port')
