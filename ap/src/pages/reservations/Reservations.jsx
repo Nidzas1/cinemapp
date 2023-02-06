@@ -21,11 +21,16 @@ const Reservations = () => {
 
     return (
         <>
+            <h1>Welcome to reservations page,{account.username}</h1>
+            <h1>YOUR RESERVATIONS:</h1><br />
             <button onClick={see}>see reservations</button>
             {reservations.map(res =>
             (
                 <>
-                    <h1>{res.seat_number}</h1>
+
+                    Movie: <h1>{res.title}</h1>
+                    <img height='300px' width='250' src={res.image}></img>
+                    Seat number:<h2>{res.seat_number}</h2>
                 </>
             ))}
         </>
