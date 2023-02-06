@@ -96,7 +96,7 @@ app.post('/updatePrices/:id', (req, res) => {
 
 app.get('/reservations/:username', (req, res) => {
     const username  = req.params.username
-    db.query('select reservations.seat_number, users.first_name from reservations inner join users on reservations.user_id = users.user_id where users.username = $1', [username], (err, result) => {
+    db.query('select users.first_name, movies.title,movies.image,reservations.seat_number,reservations.reservation_id from reservations inner join users on reservations.user_id = users.user_id inner join movies on reservations.movie_id = movies.movie_id where users.username = $1', [username], (err, result) => {
         res.send(result.rows)
     })
 })
