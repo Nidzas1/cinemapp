@@ -6,6 +6,7 @@ const { validateToken } = require('./AuthMiddleware')
 const bcrypt = require('bcrypt')
 
 const { Client } = require('pg');
+const { TodayTwoTone } = require("@material-ui/icons");
 
 const db = new Client({
     host: 'localhost',
@@ -102,7 +103,7 @@ app.get('/movies', (req, res) => {
 
 app.post('/reserve/:movieId', (req, res) => {
 
-    const movieId  = req.params.movieId
+    const movieId = req.params.movieId
 
     const { seatNum, userId } = req.body
     db.query('insert into reservations(seat_number,user_id,movie_id) values($1,$2,$3)', [seatNum, userId, movieId], () => {
@@ -128,6 +129,12 @@ app.get('/premiere', (req, res) => {
     })
 })
 
+app.get('/today', (req, res) => {
+
+    db.query('select * from movies where showing = current_date', (err, result) => {
+        res.json(result.rows)
+    })
+})
 
 app.listen(5000, () => {
     console.log('listening on 5k port')
