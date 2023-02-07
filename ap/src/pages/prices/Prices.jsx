@@ -11,9 +11,6 @@ const Prices = () => {
 
     const [prices, setPrices] = useState([])
 
-    {/* ALL USER DATA COLLECTED  HERE */ }
-    {/* ALL USER DATA COLLECTED  HERE */ }
-    {/* ALL USER DATA COLLECTED  HERE */ }
     useEffect(() => {
         setAuth(sessionStorage.getItem('auth'))
         setAccount(JSON.parse(sessionStorage.getItem('user')))
