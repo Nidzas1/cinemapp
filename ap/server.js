@@ -6,7 +6,6 @@ const { validateToken } = require('./AuthMiddleware')
 const bcrypt = require('bcrypt')
 
 const { Client } = require('pg');
-const { TodayTwoTone } = require("@material-ui/icons");
 
 const db = new Client({
     host: 'localhost',
@@ -56,12 +55,6 @@ app.post('/register', async (req, res) => {
     })
 })
 
-app.get('/accounts', validateToken, (req, res) => {
-    db.query('SELECT * FROM accounts', (err, result) => {
-        res.send(result.rows)
-    })
-})
-
 app.get('/allPrices', (req, res) => {
     db.query('select * from prices', (err, result) => {
         res.send(result.rows)
@@ -101,6 +94,24 @@ app.get('/movies', (req, res) => {
     })
 })
 
+app.post('/insertMovies', (req, res) => {
+
+    const { title, year, description, image, duration, premiere, showing, timePlaying, genre_id, room_id } = req.body
+
+    db.query('INSERT INTO movies(title,year,description,image,duration,premiere,showing,time_playing,genre_id,room_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)', [title, year, description, image, duration, premiere, showing, timePlaying, genre_id, room_id], () => {
+        console.log("Movie inserted.")
+    })
+})
+
+app.delete('/deleteMovies/:movieId', (req, res) => {
+
+    const movieId = req.params.movieId
+    console.log(movieId)
+    db.query('delete from movies where movie_id = $1', [movieId], () => {
+        console.log("Movie deleted.")
+    })
+})
+
 app.post('/reserve/:movieId', (req, res) => {
 
     const movieId = req.params.movieId
@@ -115,6 +126,15 @@ app.get('/reservations/:username', (req, res) => {
     const username = req.params.username
     db.query('select users.first_name, movies.title,movies.image,reservations.seat_number,reservations.reservation_id from reservations inner join users on reservations.user_id = users.user_id inner join movies on reservations.movie_id = movies.movie_id where users.username = $1', [username], (err, result) => {
         res.send(result.rows)
+    })
+})
+
+app.delete('/deleteReservation/:resId', (req, res) => {
+
+    const resId = req.params.resId
+
+    db.query('delete from reservations where reservation_id = $1', [resId], () => {
+        console.log('reservation deleted.')
     })
 })
 
