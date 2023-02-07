@@ -54,6 +54,26 @@ const Movies = () => {
         }
     }
 
+    const updateMovie = (movieId) => {
+        try {
+            axios.delete(`http://localhost:5000/updateMovies/${movieId}`, {
+                title: title,
+                year: year,
+                description: description,
+                image: image,
+                duration: duration,
+                premiere: premiere,
+                showing: showing,
+                timePlaying: timePlaying,
+                genre_id: genreId,
+                room_id: roomId
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     const deleteMovie = (movieId) => {
 
         try {
