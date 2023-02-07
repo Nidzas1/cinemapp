@@ -103,6 +103,28 @@ app.post('/insertMovies', (req, res) => {
     })
 })
 
+app.post('/movie/update/:movieId', (req, res) => {
+
+    const movieId = req.params.movieId
+
+    const { title } = req.body
+
+    console.log(movieId)
+
+    db.query('UPDATE movies SET title = $1 where movie_id = $2', [title, movieId], (err, result) => {
+        console.log('updated')
+    })
+})
+
+app.get('/movie/:id', (req, res) => {
+
+    const id = req.params.id
+
+    db.query('SELECT * FROM movies where movie_id = $1', [id], (err, result) => {
+        res.send(result.rows)
+    })
+})
+
 app.delete('/deleteMovies/:movieId', (req, res) => {
 
     const movieId = req.params.movieId
