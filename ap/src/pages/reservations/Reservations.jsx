@@ -19,6 +19,17 @@ const Reservations = () => {
             .then(res => setReservations(res.data))
     }
 
+    const deleteRes = (resId) => {
+
+        try {
+            axios.delete(`http://localhost:5000/deleteReservation/${resId}`)
+                .then(console.log(resId))
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <>
             <h1>Welcome to reservations page,{account.username}</h1>
@@ -27,10 +38,11 @@ const Reservations = () => {
             {reservations.map(res =>
             (
                 <>
-
+                    reservation_id: <h1>{res.reservation_id}</h1>
                     Movie: <h1>{res.title}</h1>
                     <img height='300px' width='250' src={res.image}></img>
                     Seat number:<h2>{res.seat_number}</h2>
+                    <button onClick={() => deleteRes(res.reservation_id)}>DELETE RES</button>
                 </>
             ))}
         </>

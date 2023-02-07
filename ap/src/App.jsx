@@ -11,17 +11,19 @@ import Prices from "./pages/prices/Prices";
 import Reservations from "./pages/reservations/Reservations";
 import Movies from "./pages/movies/Movies";
 import Showing from "./pages/showing/Showing";
+import Premiere from "./pages/premiere/Premiere";
 const App = () => {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/today" element={<Showing />} />
+                <Route path="/premiere" element={<Premiere />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/movies" element={<Movies />} />
                 <Route path="/prices" element={<Prices />} />
                 <Route path="/reservations" element={<Reservations />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/movies" element={<Movies />} />
             </Routes>
         </Router>
     )
