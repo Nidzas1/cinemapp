@@ -107,11 +107,9 @@ app.post('/movie/update/:movieId', (req, res) => {
 
     const movieId = req.params.movieId
 
-    const { title } = req.body
+    const { title, year, description, image, duration, premiere, showing, timePlaying, genreId, roomId } = req.body
 
-    console.log(movieId)
-
-    db.query('UPDATE movies SET title = $1 where movie_id = $2', [title, movieId], (err, result) => {
+    db.query('UPDATE movies SET title = $1, year = $2, description = $3, image = $4, duration = $5, premiere = $6, showing = $7, time_playing = $8, genre_id = $9, room_id = $10 where movie_id = $11', [title, year, description, image, duration, premiere, showing, timePlaying, genreId, roomId, movieId], (err, result) => {
         console.log('updated')
     })
 })
