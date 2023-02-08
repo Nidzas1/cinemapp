@@ -34,6 +34,7 @@ const Premiere = () => {
             <>
 
             <div class="card">
+              <h1>{premiere.genre}</h1>
                 <h2 class="card-title">{premiere.title}</h2>
                 <img src={premiere.image} alt=""/>
                 <p class="card-desc">{premiere.description} <br/><br/>Premiere: <br/>
