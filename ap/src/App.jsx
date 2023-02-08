@@ -13,6 +13,7 @@ import Movies from "./pages/movies/Movies";
 import Premiere from "./pages/premiere/Premiere";
 import Today from "./pages/today/Today"
 import Movie from "./pages/movies/Movie";
+import NewMovie from "./pages/movies/newMovie";
 const App = () => {
     return (
         <Router>
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/movies" element={<Movies />} />
                 <Route path="/movie/:id" element={<Movie />} />
+                <Route path="/newMovie" element={<NewMovie />}/>
 
             </Routes>
         </Router>

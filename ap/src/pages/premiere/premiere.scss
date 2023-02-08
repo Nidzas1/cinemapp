@@ -1,27 +1,26 @@
-/*body {
-    background: rgb(56,0,0);
-background: radial-gradient(circle, rgba(56,0,0,1) 0%, rgba(0,0,0,1) 67%);
-}
-*/
+
 .premiere{
     height: 100vh;
-    background: url("https://img.freepik.com/premium-photo/cinema-movie-theatre-with-red-seats-rows-black-copy-space-background_118047-4275.jpg");
+    background:linear-gradient( to bottom, rgba(0, 0, 0, 0)0%,rgba(0,0,0,0.7) 100%), 
+    url("https://img.freepik.com/premium-photo/cinema-movie-theatre-with-red-seats-rows-black-copy-space-background_118047-4275.jpg");
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
   
   .cards {
     width: 100%;
+    padding-top: 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.1);
   }
   
   .card {
     margin: 40px;
     position: relative;
     max-width: 250px;
-    max-height: 350px;
+    max-height: 200px;
     box-shadow: 0 40px 60px -6px rgb(133, 133, 133);
   }
   
@@ -29,14 +28,35 @@ background: radial-gradient(circle, rgba(56,0,0,1) 0%, rgba(0,0,0,1) 67%);
     display: block;
     text-align: center;
     color: #fff;
-    background: rgba(42, 42, 42, 0.2);
-    border-radius: 16px;
+    background:  rgba(124, 2, 2, 0.8);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     padding: 2%;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
+  }
+
+  .card-genre {
+    display: block;
+    text-align: center;
+    color: rgba(124, 2, 2, 0.8);
+    padding: 2%;
+    border-radius: 100%;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+  }
+  .card-date {
+    display: block;
+    text-align: center;
+    color: #fff;
+    background: rgba(124, 2, 2, 0.8);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 2%;
+
   }
   
   .card img {
@@ -49,7 +69,7 @@ background: radial-gradient(circle, rgba(56,0,0,1) 0%, rgba(0,0,0,1) 67%);
   
   .card-desc {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1rem;
     position: absolute;
     height: 0;
     top: 0;

@@ -27,18 +27,16 @@ const Premiere = () => {
     <div className='premiere'>
         <Navbar/>
         
-        <div class="cards">
-        
-
+        <div className="cards"> 
         {premiere.map(premiere => (
             <>
-
-            <div class="card">
-              <h1>{premiere.genre}</h1>
-                <h2 class="card-title">{premiere.title}</h2>
+            <div className="card">
+                <h2 className="card-title">{premiere.title}</h2>
+                <h4 className='card-date'>{format(new Date(premiere.showing), 'dd MMMM yyyy')}</h4>
                 <img src={premiere.image} alt=""/>
-                <p class="card-desc">{premiere.description} <br/><br/>Premiere: <br/>
-                {format(new Date(premiere.showing), 'dd MMMM yyyy')}</p>
+                <p className="card-desc"><h4 className='card-genre'>{premiere.genre}</h4>
+                {premiere.description}
+                </p>
         </div>
     
   </>

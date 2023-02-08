@@ -1,10 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-
-
+import "./movies.scss"
+import format from 'date-fns/format'
+import { Navigate } from "react-router-dom"
+import Navbar from "../../components/navbar/Navbar";
 const Movies = () => {
 
     const [movies, setMovies] = useState([])
+    const [newMovie, setNewMovie] = useState(false)
 
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
@@ -21,6 +24,8 @@ const Movies = () => {
     const [timePlaying, setTimePlaying] = useState('')
     const [genreId, setGenreId] = useState('')
     const [roomId, setRoomId] = useState('')
+
+   
 
     useEffect(() => {
         fetch('http://localhost:5000/movies')
@@ -92,10 +97,44 @@ const Movies = () => {
         })
     }
 
+    if(newMovie){
+        return (
+         <Navigate to="/newMovie"/>
+        )
+     }
     return (
         <>
+        <div className='movies'>
+            <Navbar />
             {auth && account.role === 'ADMIN' ?
                 <>
+                    <div className="insert">
+                    <button className='button' onClick={() => setNewMovie(true)}>INSERT NEW MOVIE</button>
+                    </div>
+                    <div className="cards">
+                    {movies.map(movie => (
+                        <>
+                            <div className="card" onClick={() => updateMovie(movie.movie_id)}>
+                            <h2 className="card-title">{movie.title}</h2>
+                            <img src={movie.image} alt=""/>
+                            <p className="card-desc">
+                                Year: {movie.year}<br/><br/>
+                                Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br/><br/>
+                                {movie.description}<br/><br/>
+                                Duration: {movie.duration}<br/><br/></p>
+                                <h4>Insert number of seat:</h4>
+                             <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
+                             <div className="buttons">
+                             <button className='button' onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                             <button className='button' onClick={() => deleteMovie(movie.movie_id)}>DELETE</button>
+                        </div>
+                        
+                        </div>
+                            
+                        </>
+                    ))}
+                    </div>
+                    
                     <form>
                         Title<input type="text" onChange={e => setTitle(e.target.value)} />
                         setYear<input type="text" onChange={e => setYear(e.target.value)} />
@@ -109,28 +148,32 @@ const Movies = () => {
                         setRoomId<input type="text" onChange={e => setRoomId(e.target.value)} />
                         <button onClick={insertMovie}>Insert</button>
                     </form>
-                    {movies.map(movie => (
-                        <>
-                            <h1>{movie.title}</h1>
-                            <h2>{movie.movie_id}</h2>
-                            <input type='text' onChange={e => setNumber(e.target.value)} />
-                            <button onClick={() => reserve(movie.movie_id)}>RESERVE</button>
-                            <button onClick={() => deleteMovie(movie.movie_id)}>DELETE</button>
-                        </>
-                    ))}
                 </>
                 :
                 <>
+                <div className="cards">
                     {movies.map(movie => (
                         <>
-                            <h1>{movie.title}</h1>
-                            <h2>{movie.movie_id}</h2>
-                            <input type='text' onChange={e => setNumber(e.target.value)} />
-                            <button onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                              <div className="card">
+                            <h2 className="card-title">{movie.title}</h2>
+                            <img src={movie.image} alt=""/>
+                            <p class="card-desc">
+                                Year: {movie.year}<br/><br/>
+                                Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br/><br/>
+                                {movie.description}<br/><br/>
+                                Duration: {movie.duration}<br/><br/></p>
+                                <h4>Insert number of seat:</h4>
+                             <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
+                             <div className="buttons">
+                            <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                            </div>
+                            </div>
                         </>
                     ))}
+                </div>
                 </>
             }
+        </div>
         </>
 
     )
