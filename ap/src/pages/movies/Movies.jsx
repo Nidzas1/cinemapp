@@ -135,19 +135,7 @@ const Movies = () => {
                     ))}
                     </div>
                     
-                    <form>
-                        Title<input type="text" onChange={e => setTitle(e.target.value)} />
-                        setYear<input type="text" onChange={e => setYear(e.target.value)} />
-                        setDescription<input type="text" onChange={e => setDescription(e.target.value)} />
-                        setImage<input type="text" onChange={e => setImage(e.target.value)} />
-                        setDuration<input type="text" onChange={e => setDuration(e.target.value)} />
-                        setPremiere<input type="text" onChange={e => setPremiere(e.target.value)} />
-                        setShowing<input type="text" onChange={e => setShowing(e.target.value)} />
-                        setTimePlaying<input type="text" onChange={e => setTimePlaying(e.target.value)} />
-                        setGenreId<input type="text" onChange={e => setGenreId(e.target.value)} />
-                        setRoomId<input type="text" onChange={e => setRoomId(e.target.value)} />
-                        <button onClick={insertMovie}>Insert</button>
-                    </form>
+                   
                 </>
                 :
                 <>

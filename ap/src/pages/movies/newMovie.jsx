@@ -41,6 +41,7 @@ const NewMovie = () => {
                 genre_id: genreId,
                 room_id: roomId
             })
+            window.location.reload(false);
         }
         catch (err) {
             console.log(err)
