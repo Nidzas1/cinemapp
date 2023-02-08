@@ -33,6 +33,7 @@ const Showing = () => {
         <>
 
         <div class="card">
+            <h1>{t.room_number}</h1>
             <h2 class="card-title">{t.title}</h2>
             <img src={t.image} alt=""/>
             <p class="card-desc">{t.description} <br/><br/>Date: <br/>

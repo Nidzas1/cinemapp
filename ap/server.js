@@ -159,7 +159,7 @@ app.delete('/deleteReservation/:resId', (req, res) => {
 })
 
 app.get('/premiere', (req, res) => {
-    db.query('select * from movies where premiere = true', (err, result) => {
+    db.query('select movies.title,movies.year,movies.description,movies.image,movies.duration,movies.premiere,movies.showing,movies.time_playing,genres.genre from movies inner join genres on movies.genre_id = genres.genre_id where premiere = true', (err, result) => {
         try {
             res.send(result.rows)
         }
@@ -171,7 +171,7 @@ app.get('/premiere', (req, res) => {
 
 app.get('/today', (req, res) => {
 
-    db.query('select * from movies where showing = current_date', (err, result) => {
+    db.query('select movies.title,movies.year,movies.description,movies.image,movies.duration,movies.premiere,movies.showing,movies.time_playing,rooms.room_number from movies inner join rooms on movies.room_id = rooms.room_id where showing = current_date', (err, result) => {
         res.json(result.rows)
     })
 })
