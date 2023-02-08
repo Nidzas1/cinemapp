@@ -22,7 +22,9 @@ const Navbar = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   }
-
+  if(home){
+    return <Navigate to="/"/>
+  }
   if (login) {
     return <Navigate to="/login" />
   }
@@ -56,7 +58,7 @@ const Navbar = () => {
       <div className="container">
         <div className="left">
           <img src={logo} alt="" />
-          <span>Home</span>
+          <span onClick={() => setHome(true)}>Home</span>
           <span onClick={() => setToday(true)}>Today</span>
           <span onClick={() => setPremiere(true)}>Premiere</span>
           <span onClick={() => setMovies(true)}>Movies</span>

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-
-
+import "./today.scss"
+import Navbar from "../../components/navbar/Navbar";
+import format from 'date-fns/format'
 const Showing = () => {
 
     const [today, setToday] = useState([])
@@ -21,15 +22,30 @@ const Showing = () => {
     }, [])
 
     return (
+      
+    <div className='premiere'>
+    <Navbar/>
+    
+    <div class="cards">
+    
+
+    {today.map(t => (
         <>
-            {today.map(t => (
-                <>
-                    <h1>{t.duration}</h1>
-                    <h2>{t.movie_id}</h2>
-                </>
-            ))}
+
+        <div class="card">
+            <h2 class="card-title">{t.title}</h2>
+            <img src={t.image} alt=""/>
+            <p class="card-desc">{t.description} <br/><br/>Date: <br/>
+            {format(new Date(t.showing), 'dd MMMM yyyy')}
+            <br/><br/>Time: <br/> {t.time_playing}</p>
+        </div>
+
         </>
+    ))}
+</div>   
+</div> 
     )
+    
 }
 
 export default Showing

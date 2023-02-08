@@ -2,24 +2,27 @@ import "./register.scss"
 import logo from "../../images/logo.png";
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate} from "react-router-dom";
-import {Navigate } from "react-router-dom"
+import { useNavigate }  from "react-router-dom";
+import { Navigate } from "react-router-dom"
 
 export default function Register() {
 
+    const navigate = useNavigate();
     const[firstName, setFirstName] = useState('')
     const[lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    
-
-    const navigate = useNavigate();
+      
     const [login, setLogin] = useState(false);
     const[home, setHome] = useState(false);
+
     if(home){
          return <Navigate to="/"/>
     }
+    if(login){
+        return <Navigate to="/login"/>
+      }
 
     const Register = (e) => {
         e.preventDefault()
@@ -31,14 +34,13 @@ export default function Register() {
             password: password,
         
         })
-            .then(() => {
-                navigate('/');
-            })
+        
+        .then(() => {
+            navigate('/')
+        })
     }
     
-    if(login){
-        return <Navigate to="/login"/>
-      }
+    
       
   return (
     <div className="register">

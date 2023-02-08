@@ -35,6 +35,9 @@ export default function ListItem({index}) {
           <div className="genre">Action</div>
         </div>
     </div>
+
+
+    
   )
 }
 
