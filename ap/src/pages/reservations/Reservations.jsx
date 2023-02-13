@@ -10,28 +10,23 @@ const Reservations = () => {
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
 
+    const [show, setShow] = useState(true)
+
 
     useEffect(() => {
         setAuth(sessionStorage.getItem('auth'))
         setAccount(JSON.parse(sessionStorage.getItem('user')))
     }, [])
 
-    useEffect(() => {
+    const showRes = () => {
+        axios.get('http://localhost:5000/reservations/' + account.username)
+            .then(res => setReservations(res.data))
+        setShow(false)
 
-        if (account.username && auth == false) {
-            setAccount('')
-        }
-        else {
-            fetch('http://localhost:5000/reservations/' + account.username)
-                .then(res => res.json())
-                .then(data => setReservations(data))
-        }
-    }, [])
-
+    }
 
 
     const deleteRes = (resId) => {
-
         try {
             axios.delete(`http://localhost:5000/deleteReservation/${resId}`)
                 .then(console.log(resId))
@@ -43,18 +38,22 @@ const Reservations = () => {
 
     return (
         <>
-            {auth && account.role === 'ADMIN' ?
+            {auth ?
                 <div className='reservations'>
                     <Navbar />
                     <heading>
                         <h1>Welcome to reservations page,{account.username}</h1>
-                        <h1 style={{ marginBottom: '20px' }}>YOUR RESERVATIONS ARE SHOWN BELOW</h1>
+
                     </heading>
 
                     <div className="login-box">
-                        <div className='user-box'>
-                        </div>
-                        <hr />
+                        {show ?
+                            <form>
+                                <a onClick={showRes}>SHOW MY RESERVATIONS</a>
+                            </form>
+                            :
+                            <h1></h1>
+                        }
                         {reservations.map(res =>
                         (
                             <>

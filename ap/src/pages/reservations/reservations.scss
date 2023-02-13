@@ -2,10 +2,11 @@
     height: 200vh;
     background: linear-gradient(rgb(0, 0, 0), rgb(85, 2, 2));
 
-    .reservations, heading {
+    .reservations,
+    heading {
         color: white;
         position: absolute;
-        top:10%;
+        top: 10%;
         text-align: center;
     }
 
@@ -27,6 +28,7 @@
         text-align: center;
         color: white;
     }
+
 
     .login-box h2 {
         margin: 0 0 50px;
