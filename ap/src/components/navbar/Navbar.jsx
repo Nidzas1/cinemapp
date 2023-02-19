@@ -1,13 +1,17 @@
 import "./navbar.scss";
 import logo from "../../images/logo.png";
-import { ExitToAppSharp } from "@material-ui/icons";
+import { ExitToAppSharp, KeyboardReturnTwoTone } from "@material-ui/icons";
 import { HowToRegSharp } from "@material-ui/icons";
 import { useState } from "react";
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
+import { useEffect } from "react";
 
 const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [account, setAccount] = useState('');
+  const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
   const [register, setRegister] = useState(false);
   const [login, setLogin] = useState(false);
 
@@ -17,6 +21,16 @@ const Navbar = () => {
   const [movies, setMovies] = useState(false);
   const [prices, setPrices] = useState(false);
   const [reservations, setReservations] = useState(false);
+
+  useEffect(() => {
+    setAuth(sessionStorage.getItem('auth'))
+    setAccount(JSON.parse(sessionStorage.getItem('user')))
+  }, [])
+
+  const logout = () => {
+    sessionStorage.clear();
+     window.location.reload(false);
+  }
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -30,6 +44,7 @@ const Navbar = () => {
   }
 
   if (register) {
+    sessionStorage.clear()
     return <Navigate to="/register" />
   }
 
@@ -66,7 +81,9 @@ const Navbar = () => {
           <span onClick={() => setReservations(true)}>Reservations</span>
         </div>
         <div className="right">
-          < ExitToAppSharp className="icon" onClick={() => setLogin(true)} />
+          {auth? <KeyboardReturnTwoTone className="icon"  onClick={logout}/>
+          :< ExitToAppSharp className="icon" onClick={() => setLogin(true)} />
+          }
           <HowToRegSharp className="icon" onClick={() => setRegister(true)} />
         </div>
       </div>

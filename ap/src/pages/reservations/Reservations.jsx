@@ -6,7 +6,7 @@ import '../reservations/reservations.scss'
 const Reservations = () => {
 
     const [reservations, setReservations] = useState([])
-
+    
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
 

@@ -8,11 +8,11 @@ import { Navigate } from "react-router-dom"
 export default function Register() {
 
     const navigate = useNavigate();
-    const[firstName, setFirstName] = useState('')
-    const[lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const[firstName, setFirstName] = useState("")
+    const[lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
       
     const [login, setLogin] = useState(false);
     const[home, setHome] = useState(false);
@@ -34,10 +34,10 @@ export default function Register() {
             password: password,
         
         })
+
+          navigate("/login")
+          console.log("succesfull")
         
-        .then(() => {
-            navigate('/')
-        })
     }
     
     
@@ -56,12 +56,17 @@ export default function Register() {
             <p>Ready to watch? Create membership and reserve your seat.</p>
           
             <div className="input">
-            <input type="text" placeholder="First name" className="formControl" onChange={(e) => setFirstName(e.target.value)}/>
-            <input type="text" placeholder="Last name"  className="formControl" onChange={(e) => setLastName(e.target.value)}/>
-            <input type="email" placeholder="Email address" className="formControl" onChange={(e) => setEmail(e.target.value)} />
-            <input type="text" placeholder="Username"  className="formControl" onChange={(e) => setUsername(e.target.value)}/>
-            <input type="password" placeholder="Password" className="formControl"  onChange={(e) => setPassword(e.target.value)}/>
-            <button className="registerButton" onClick={Register}> Get started</button>
+            <input type="text" placeholder="First name" className="formControl" onChange={(e) => setFirstName(e.target.value)} required/>
+            <input type="text" placeholder="Last name"  className="formControl" onChange={(e) => setLastName(e.target.value)} required/>
+            <input type="email" placeholder="Email address" className="formControl" onChange={(e) => setEmail(e.target.value)} required/>
+            <input type="text" placeholder="Username"  className="formControl" onChange={(e) => setUsername(e.target.value)} required/>
+            <input type="password" placeholder="Password" className="formControl"  onChange={(e) => setPassword(e.target.value)} required/>
+            {
+              firstName=="" || lastName=="" || email=="" || username=="" || password==""?  <button type="submit" disabled className="registerButtonDisabled" onClick={Register}> Get started</button>
+              :
+              <button type="submit" className="registerButton" onClick={Register}> Get started</button>
+            }
+           
             </div>
             </div>
             </form>

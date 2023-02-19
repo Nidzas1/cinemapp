@@ -7,13 +7,13 @@ import Navbar from "../../components/navbar/Navbar";
 const Movies = () => {
 
     const [movies, setMovies] = useState([])
+
     const [newMovie, setNewMovie] = useState(false)
 
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
 
     const [number, setNumber] = useState('')
-
 
     useEffect(() => {
         fetch('http://localhost:5000/movies')
@@ -66,16 +66,40 @@ const Movies = () => {
                                     <div className="card">
                                         <h2 className="card-title">{movie.title}</h2>
                                         <img src={movie.image} alt="" />
-                                        <Link style={{ color: 'red' }} to={`/movie/${movie.movie_id}`}><p className="card-desc">
+                                        <Link className='link' to={`/movie/${movie.movie_id}`}><p className="card-desc">
                                             Year: {movie.year}<br /><br />
                                             Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
                                             {movie.description}<br /><br />
                                             Duration: {movie.duration}<br /><br /></p></Link>
                                         <h4>Insert number of seat:</h4>
+                                        
                                         <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
                                         <div className="buttons">
                                             <button className='button' onClick={() => reserve(movie.movie_id)}>RESERVE</button>
                                             <button className='button' onClick={() => deleteMovie(movie.movie_id)}>DELETE</button>
+                                        </div>
+                                    </div>
+                                </>
+                            ))}
+                        </div>
+                    </>
+                    : auth && account.role === 'USER' ?
+                    <>
+                        <div className="cards">
+                            {movies.map(movie => (
+                                <>
+                                    <div className="card">
+                                        <h2 className="card-title">{movie.title}</h2>
+                                        <img src={movie.image} alt="" />
+                                        <p className="card-desc">
+                                            Year: {movie.year}<br /><br />
+                                            Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
+                                            {movie.description}<br /><br />
+                                            Duration: {movie.duration}<br /><br /></p>
+                                        <h4>Insert number of seat:</h4>
+                                        <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
+                                        <div className="buttons">
+                                            <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
                                         </div>
                                     </div>
                                 </>
@@ -90,16 +114,11 @@ const Movies = () => {
                                     <div className="card">
                                         <h2 className="card-title">{movie.title}</h2>
                                         <img src={movie.image} alt="" />
-                                        <p class="card-desc">
+                                        <p className="card-desc">
                                             Year: {movie.year}<br /><br />
                                             Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
                                             {movie.description}<br /><br />
                                             Duration: {movie.duration}<br /><br /></p>
-                                        <h4>Insert number of seat:</h4>
-                                        <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
-                                        <div className="buttons">
-                                            <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
-                                        </div>
                                     </div>
                                 </>
                             ))}

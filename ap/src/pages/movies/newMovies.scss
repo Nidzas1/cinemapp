@@ -7,7 +7,7 @@
     background: linear-gradient(rgb(0,0,0), rgb(85, 2, 2));
 
 
-    .login-box {
+    .box {
         position: absolute;
         left: 50%;
         top:80%;
@@ -20,18 +20,18 @@
         border-radius: 10px;
       }
     
-      .login-box h2 {
+      .box h2 {
         margin: 0 0 50px;
         padding: 0;
         color: #fff;
         text-align: center;
       }
     
-      .login-box .user-box {
+      .box .movie-box {
         position: relative;
       }
     
-      .login-box .user-box input {
+      .box .movie-box input {
         width: 100%;
         padding: 10px 0;
         font-size: 16px;
@@ -42,7 +42,24 @@
         outline: none;
         background: transparent;
       }
-      .login-box .user-box label {
+
+      .box .movie-box select {
+        width: 100%;
+        padding-top: 50px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #550101;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+
+        option{
+          background-color: #550101;
+        }
+      }
+      .box .movie-box label {
         position: absolute;
         top:0;
         left: 0;
@@ -53,15 +70,15 @@
         transition: .5s;
       }
     
-      .login-box .user-box input:focus ~ label,
-      .login-box .user-box input:valid ~ label {
+      .box .movie-box input:focus ~ label,
+      .box .movie-box input:valid ~ label {
         top: -20px;
         left: 0;
         color: white;
         font-size: 12px;
       }
     
-      .login-box form a {
+      .box form a {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -76,7 +93,7 @@
         cursor: pointer;
       }
     
-      .login-box a:hover {
+      .box a:hover {
         background: #550101;
         color: #fff;
         border-radius: 5px;
@@ -86,12 +103,12 @@
                     0 0 100px #7e0303,
       }
     
-      .login-box a span {
+      .box a span {
         position: absolute;
         display: block;
       }
     
-      .login-box a span:nth-child(1) {
+      .box a span:nth-child(1) {
         top: 0;
         left: -100%;
         width: 100%;
@@ -109,7 +126,7 @@
         }
       }
     
-      .login-box a span:nth-child(2) {
+      .box a span:nth-child(2) {
         top: -100%;
         right: 0;
         width: 2px;
@@ -128,7 +145,7 @@
         }
       }
     
-      .login-box a span:nth-child(3) {
+      .box a span:nth-child(3) {
         bottom: 0;
         right: -100%;
         width: 100%;
@@ -147,7 +164,7 @@
         }
       }
     
-      .login-box a span:nth-child(4) {
+      .box a span:nth-child(4) {
        
         left: 0;
         width: 2px;
