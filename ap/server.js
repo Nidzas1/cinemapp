@@ -52,7 +52,7 @@ app.post('/register', async (req, res) => {
 
     await db.query('INSERT INTO users(first_name,last_name,email,username,password,role) VALUES($1,$2,$3,$4,$5,$6)', [firstName, lastName, email, username, hashpass, role], () => {
         console.log('user inserted into database.')
-        
+
     })
 })
 
@@ -178,7 +178,6 @@ app.get('/allSeats', (req, res) => {
 })
 
 
-
 app.get('/genres', (req, res) => {
     db.query('select * from genres', (err, result) => {
         res.send(result.rows)
@@ -194,6 +193,12 @@ app.get('/today', (req, res) => {
 
     db.query('select movies.title,movies.year,movies.description,movies.image,movies.duration,movies.premiere,movies.showing,movies.time_playing,rooms.room_number from movies inner join rooms on movies.room_id = rooms.room_id where showing = current_date', (err, result) => {
         res.json(result.rows)
+    })
+})
+
+app.get('/adminReservations', (req, res) => {
+    db.query('select users.first_name, users.last_name, movies.title,movies.image,reservations.seat_number,reservations.reservation_id from reservations inner join users on reservations.user_id = users.user_id inner join movies on reservations.movie_id = movies.movie_id', (err, result) => {
+        res.send(result.rows)
     })
 })
 

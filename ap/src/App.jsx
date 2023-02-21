@@ -14,6 +14,7 @@ import Premiere from "./pages/premiere/Premiere";
 import Today from "./pages/today/Today"
 import Movie from "./pages/movies/Movie";
 import NewMovie from "./pages/movies/newMovie";
+import AdminReservations from "./admin/reservations/AdminReservations";
 const App = () => {
     return (
         <Router>
@@ -27,8 +28,9 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/movies" element={<Movies />} />
                 <Route path="/movie/:id" element={<Movie />} />
-                <Route path="/newMovie" element={<NewMovie />}/>
+                <Route path="/newMovie" element={<NewMovie />} />
 
+                <Route path='/adminReservations' element={<AdminReservations />} />
             </Routes>
         </Router>
     )
