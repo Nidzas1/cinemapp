@@ -9,6 +9,7 @@ const Movies = () => {
     const [movies, setMovies] = useState([])
 
     const [newMovie, setNewMovie] = useState(false)
+    const [seats, setSeats] = useState([])
 
     const [message, setMessage] = useState('')
 
@@ -40,12 +41,22 @@ const Movies = () => {
         }
     }
 
+    const takenSeats = (title) => {
+        try {
+            axios.get(`http://localhost:5000/takenSeats/${title}`)
+                .then(res => setSeats(res.data))
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     const reserve = (movieId) => {
         axios.post(`http://localhost:5000/reserve/${movieId}`, {
             seatNum: number,
             userId: account.userId
         })
-        .then(res => setMessage(res.data))
+            .then(res => setMessage(res.data))
             .catch((err) => {
                 setMessage(err.request.response)
             })
@@ -78,7 +89,6 @@ const Movies = () => {
                                             {movie.description}<br /><br />
                                             Duration: {movie.duration}<br /><br /></p></Link>
                                         <h4>Insert number of seat:</h4>
-
                                         <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
                                         <div className="buttons">
                                             <button className='button' onClick={() => reserve(movie.movie_id)}>RESERVE</button>
@@ -104,6 +114,7 @@ const Movies = () => {
                                                 {movie.description}<br /><br />
                                                 Duration: {movie.duration}<br /><br /></p>
                                             <h4>Insert number of seat:</h4>
+                                            <button onClick={() => takenSeats(movie.title)}></button>
                                             <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
                                             <div className="buttons">
                                                 <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
@@ -111,6 +122,11 @@ const Movies = () => {
                                         </div>
                                     </>
                                 ))}
+                                <h3>{seats.map(seat => (
+                                    <>
+                                        <h1>{seat.seat_number}</h1>
+                                    </>
+                                ))}</h3>
                             </div>
                         </>
                         :
