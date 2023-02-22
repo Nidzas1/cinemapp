@@ -45,6 +45,7 @@ const Movies = () => {
             seatNum: number,
             userId: account.userId
         })
+        .then(res => setMessage(res.data))
             .catch((err) => {
                 setMessage(err.request.response)
             })
