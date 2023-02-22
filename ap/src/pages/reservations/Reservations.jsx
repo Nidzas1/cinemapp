@@ -1,3 +1,4 @@
+import { ConstructionSharp } from '@mui/icons-material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
@@ -6,9 +7,11 @@ import '../reservations/reservations.scss'
 const Reservations = () => {
 
     const [reservations, setReservations] = useState([])
-    
+
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
+
+    const [message, setMessage] = useState('')
 
     const [show, setShow] = useState(true)
 
@@ -29,10 +32,10 @@ const Reservations = () => {
     const deleteRes = (resId) => {
         try {
             axios.delete(`http://localhost:5000/deleteReservation/${resId}`)
-                .then(console.log(resId))
+                .then(res => setMessage(res.data.message))
         }
         catch (err) {
-            console.log(err)
+            setMessage(err.request.response)
         }
     }
 
@@ -43,6 +46,7 @@ const Reservations = () => {
                     <Navbar />
                     <heading>
                         <h1>Welcome to reservations page,{account.username}</h1>
+                        <h1>{message}</h1>
 
                     </heading>
 
