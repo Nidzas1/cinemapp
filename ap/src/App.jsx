@@ -18,8 +18,9 @@ import NewMovie from "./pages/movies/newMovie";
 
 import AdminReservations from "./admin/reservations/Reservations";
 import AdminGenres from "./admin/genres/Genres";
-import AdminRooms from "./admin/reservations/Reservations";
+import AdminRooms from "./admin/rooms/Rooms";
 import NewGenre from "./admin/genres/newGenre";
+import NewRoom from "./admin/rooms/newRoom";
 
 const App = () => {
     return (
@@ -39,8 +40,10 @@ const App = () => {
                 {/* ADMIN PAGES */}
                 <Route path='/admin/reservations' element={<AdminReservations />} />
                 <Route path='/admin/genres' element={<AdminGenres />} />
+                <Route path='/admin/newGenre' element={<NewGenre />} />
                 <Route path='/admin/rooms' element={<AdminRooms />} />
-                <Route path='/newGenre' element={<NewGenre />} />
+                <Route path='/admin/newRoom' element={<NewRoom />} />
+
 
             </Routes>
         </Router>

@@ -221,6 +221,23 @@ app.get('/rooms', (req, res) => {
         res.send(result.rows)
     })
 })
+
+app.delete('/deleteRoom/:roId', (req, res) => {
+    const roId = req.params.roId
+    db.query('delete from rooms where room_id = $1', [roId], () => {
+        res.status(200).send({ message: 'Room has been deleted.' })
+    })
+})
+
+app.post('/insertRoom', (req, res) => {
+
+    const { roomNum, seatNum } = req.body
+
+    db.query('insert into rooms(room_number, seat_number) values($1,$2)', [roomNum, seatNum], () => {
+        console.log('Room inserted.')
+    })
+})
+
 app.get('/today', (req, res) => {
 
     db.query('select movies.title,movies.year,movies.description,movies.image,movies.duration,movies.premiere,movies.showing,movies.time_playing,rooms.room_number from movies inner join rooms on movies.room_id = rooms.room_id where showing = current_date', (err, result) => {
