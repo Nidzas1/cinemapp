@@ -14,7 +14,13 @@ import Premiere from "./pages/premiere/Premiere";
 import Today from "./pages/today/Today"
 import Movie from "./pages/movies/Movie";
 import NewMovie from "./pages/movies/newMovie";
-import AdminReservations from "./admin/reservations/AdminReservations";
+
+
+import AdminReservations from "./admin/reservations/Reservations";
+import AdminGenres from "./admin/genres/Genres";
+import AdminRooms from "./admin/reservations/Reservations";
+import NewGenre from "./admin/genres/newGenre";
+
 const App = () => {
     return (
         <Router>
@@ -30,7 +36,12 @@ const App = () => {
                 <Route path="/movie/:id" element={<Movie />} />
                 <Route path="/newMovie" element={<NewMovie />} />
 
-                <Route path='/adminReservations' element={<AdminReservations />} />
+                {/* ADMIN PAGES */}
+                <Route path='/admin/reservations' element={<AdminReservations />} />
+                <Route path='/admin/genres' element={<AdminGenres />} />
+                <Route path='/admin/rooms' element={<AdminRooms />} />
+                <Route path='/newGenre' element={<NewGenre />} />
+
             </Routes>
         </Router>
     )

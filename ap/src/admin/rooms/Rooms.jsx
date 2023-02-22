@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
-import '../../pages/reservations/reservations.scss'
+import '../../admin/genres/rooms.scss'
 
-const AdminReservations = () => {
+const Rooms = () => {
 
-    const [reservations, setReservations] = useState([])
+    const [rooms, setRooms] = useState([])
 
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
@@ -19,7 +19,7 @@ const AdminReservations = () => {
     }, [])
 
     const showRes = () => {
-        axios.get('http://localhost:5000/adminReservations')
+        axios.get('http://localhost:5000/admin/rooms')
             .then(res => setReservations(res.data))
         setShow(false)
     }
@@ -41,14 +41,14 @@ const AdminReservations = () => {
                 <div className='reservations'>
                     <Navbar />
                     <heading>
-                        <h1>Welcome to reservations ADMIN page, {account.username}</h1>
+                        <h1>Welcome to rooms ADMIN page, {account.username}</h1>
 
                     </heading>
 
                     <div className="login-box">
                         {show ?
                             <form>
-                                <a onClick={showRes}>SHOW ALL RESERVATIONS</a>
+                                <a onClick={showRes}>SHOW ALL ROOMS</a>
                             </form>
                             :
                             <h1></h1>
@@ -85,4 +85,4 @@ const AdminReservations = () => {
     )
 }
 
-export default AdminReservations
+export default Rooms
