@@ -1,0 +1,67 @@
+.reservations {
+    height: 200vh;
+    background: linear-gradient(rgb(0, 0, 0), rgb(85, 2, 2));
+
+    .reservations,
+    heading {
+        color: white;
+        position: absolute;
+        top: 10%;
+        text-align: center;
+    }
+
+    .login-box {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: 50px;
+        width: 50%;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, .5);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+    }
+
+
+    .login-box h2 {
+        margin: 0 0 50px;
+        font-size: medium;
+        padding: 20;
+        margin: 10px;
+        color: #fff;
+        text-align: center;
+    }
+
+
+    .login-box form a {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fcf7f7;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 0px;
+        letter-spacing: 4px;
+        cursor: pointer;
+    }
+
+    .login-box a:hover {
+        background: #550101;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #7e0303,
+            0 0 25px #7e0303,
+            0 0 50px #7e0303,
+            0 0 100px #7e0303,
+    }
+}

@@ -201,6 +201,21 @@ app.get('/genres', (req, res) => {
     })
 })
 
+app.delete('/deleteGenre/:genId', (req, res) => {
+    const genId = req.params.genId
+
+    db.query('delete from genres where genre_id = $1', [genId], () => {
+        res.status(200).send({ message: 'Genre has been deleted.' })
+    })
+})
+
+app.post('/insertGenre', (req, res) => {
+    const { genre } = req.body
+    db.query('insert into genres(genre) values($1)', [genre], () => {
+        console.log('Genre inserted.')
+    })
+})
+
 app.get('/rooms', (req, res) => {
     db.query('select * from rooms', (err, result) => {
         res.send(result.rows)
@@ -213,7 +228,7 @@ app.get('/today', (req, res) => {
     })
 })
 
-app.get('/adminReservations', (req, res) => {
+app.get('/admin/reservations', (req, res) => {
     db.query('select users.first_name, users.last_name, movies.title,movies.image,reservations.seat_number,reservations.reservation_id from reservations inner join users on reservations.user_id = users.user_id inner join movies on reservations.movie_id = movies.movie_id', (err, result) => {
         res.send(result.rows)
     })
