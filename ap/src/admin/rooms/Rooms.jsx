@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
-import '../../admin/genres/rooms.scss'
+import '../../admin/rooms/rooms.scss'
 
 const Rooms = () => {
 
@@ -19,16 +19,16 @@ const Rooms = () => {
     }, [])
 
     const showRes = () => {
-        axios.get('http://localhost:5000/admin/rooms')
-            .then(res => setReservations(res.data))
+        axios.get('http://localhost:5000/rooms')
+            .then(res => setRooms(res.data))
         setShow(false)
     }
 
 
-    const deleteRes = (resId) => {
+    const deleteRoom = (roId) => {
         try {
-            axios.delete(`http://localhost:5000/deleteReservation/${resId}`)
-                .then(console.log(resId))
+            axios.delete(`http://localhost:5000/deleteRoom/${roId}`)
+                .then(console.log(roId))
         }
         catch (err) {
             console.log(err)
@@ -53,19 +53,16 @@ const Rooms = () => {
                             :
                             <h1></h1>
                         }
-                        {reservations.map(res =>
+                        {rooms.map(res =>
                         (
                             <>
                                 <form>
                                     <div className='user-box'>
-                                        <h2 style={{ marginTop: '20px' }}>Reservation number: {res.reservation_id}</h2>
+                                        <h2 style={{ marginTop: '20px' }}>Room Id: {res.room_id}</h2>
                                     </div>
-                                    <h2>Movie: {res.title}</h2>
-                                    <img height='250' width='170' src={res.image}></img>
-                                    <h2>Seat number: {res.seat_number}</h2>
-                                    <a onClick={() => deleteRes(res.reservation_id)}>DELETE RES</a>
-                                    <h3>Firstname: {res.first_name} </h3>
-                                    <h3>Lastname: {res.last_name}</h3>
+                                    <h2>Room number: {res.room_number}</h2>
+                                    <h2>Number of seats: {res.seat_number}</h2>
+                                    <a onClick={() => deleteRoom(res.room_id)}>DELETE ROOM</a>
                                     <hr />
                                 </form>
                             </>
