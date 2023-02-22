@@ -49,16 +49,21 @@ app.post('/register', async (req, res) => {
     const role = 'USER'
 
     const hashpass = await bcrypt.hash(password, 10)
-    await db.query('SELECT * FROM USERS WHERE email = $1', [email], (err, result) => {
-        if (result.rowCount > 0) {
-            res.status(400).send('User already exists.')
-        }
-        else {
-            db.query('INSERT INTO users(first_name,last_name,email,username,password,role) VALUES($1,$2,$3,$4,$5,$6)', [firstName, lastName, email, username, hashpass, role], () => {
-                console.log('user inserted into database.')
-            })
-        }
-    })
+    try {
+        await db.query('SELECT * FROM USERS WHERE email = $1', [email], (err, result) => {
+            if (result.rowCount > 0) {
+                res.status(400).send('User already exists.')
+            }
+            else {
+                db.query('INSERT INTO users(first_name,last_name,email,username,password,role) VALUES($1,$2,$3,$4,$5,$6)', [firstName, lastName, email, username, hashpass, role], () => {
+                    console.log('user inserted into database.')
+                })
+            }
+        })
+    }
+    catch {
+        res.status(404).send("Successful registration.")
+    }
 })
 
 app.get('/allPrices', (req, res) => {
