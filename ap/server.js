@@ -251,6 +251,12 @@ app.get('/admin/reservations', (req, res) => {
     })
 })
 
+app.get('/takenSeats/:title', (req, res) => {
+    const title = req.params.title
+    db.query('select reservations.seat_number, movies.title from reservations inner join movies on reservations.movie_id = movies.movie_id where movies.title = $1', [title], (err, result) => {
+        res.send(result.rows)
+    })
+})
 app.listen(5000, () => {
     console.log('listening on 5k port')
 })
