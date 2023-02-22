@@ -11,6 +11,7 @@ export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const [message, setMessage] = useState('')
 
     const navigate = useNavigate();
     const [register, setRegister] = useState(false);
@@ -35,6 +36,9 @@ export default function Login() {
             .then(() => {
                 navigate('/')
             })
+            .catch((err) => {
+                setMessage(err.request.response)
+            })
     }
     return (
         <div className="login">
@@ -47,7 +51,7 @@ export default function Login() {
             <form>
                 <div className="container">
                     <h2> Welcome back!</h2>
-
+                    <h3>{message}</h3>
                     <div className="input">
                         <input type="text" placeholder="Username" className="formControl" onChange={(e) => setUsername(e.target.value)} />
                         <input type="password" placeholder="Password" className="formControl" onChange={(e) => setPassword(e.target.value)} />

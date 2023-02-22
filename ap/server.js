@@ -34,11 +34,11 @@ app.post('/login', async (req, res) => {
                 console.log('user logged in.')
             }
             else {
-                console.log('no')
+                res.status(404).send('Wrong email or password.')
             }
         }
         else {
-            console.log('wrong email.')
+            res.status(400).send("User with that username doesn't exist.")
         }
     })
 })
@@ -51,7 +51,7 @@ app.post('/register', async (req, res) => {
     const hashpass = await bcrypt.hash(password, 10)
     await db.query('SELECT * FROM USERS WHERE email = $1', [email], (err, result) => {
         if (result.rowCount > 0) {
-            res.status(400).send('user already exists')
+            res.status(400).send('User already exists.')
         }
         else {
             db.query('INSERT INTO users(first_name,last_name,email,username,password,role) VALUES($1,$2,$3,$4,$5,$6)', [firstName, lastName, email, username, hashpass, role], () => {
@@ -60,8 +60,6 @@ app.post('/register', async (req, res) => {
         }
     })
 })
-
-
 
 app.get('/allPrices', (req, res) => {
     db.query('select * from prices', (err, result) => {
@@ -145,8 +143,16 @@ app.post('/reserve/:movieId', (req, res) => {
     const movieId = req.params.movieId
 
     const { seatNum, userId } = req.body
-    db.query('insert into reservations(seat_number,user_id,movie_id) values($1,$2,$3)', [seatNum, userId, movieId], () => {
-        console.log('values inserted.')
+
+    db.query('select * from reservations where seat_number = $1', [seatNum], (err, result) => {
+        if (result.rowCount > 0) {
+            res.status(400).send('Seat already taken.')
+        }
+        else {
+            db.query('insert into reservations(seat_number,user_id,movie_id) values($1,$2,$3)', [seatNum, userId, movieId], () => {
+                res.status(200).send('Your reservation for seat: ' + seatNum + ' has been reserved.')
+            })
+        }
     })
 })
 
@@ -162,7 +168,7 @@ app.delete('/deleteReservation/:resId', (req, res) => {
     const resId = req.params.resId
 
     db.query('delete from reservations where reservation_id = $1', [resId], () => {
-        console.log('reservation deleted.')
+        res.status(200).send({ message: 'Your reservation has been deleted.' })
     })
 })
 

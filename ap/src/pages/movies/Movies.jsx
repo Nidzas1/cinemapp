@@ -10,6 +10,8 @@ const Movies = () => {
 
     const [newMovie, setNewMovie] = useState(false)
 
+    const [message, setMessage] = useState('')
+
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
 
@@ -43,6 +45,9 @@ const Movies = () => {
             seatNum: number,
             userId: account.userId
         })
+            .catch((err) => {
+                setMessage(err.request.response)
+            })
     }
 
     if (newMovie) {
@@ -72,7 +77,7 @@ const Movies = () => {
                                             {movie.description}<br /><br />
                                             Duration: {movie.duration}<br /><br /></p></Link>
                                         <h4>Insert number of seat:</h4>
-                                        
+
                                         <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
                                         <div className="buttons">
                                             <button className='button' onClick={() => reserve(movie.movie_id)}>RESERVE</button>
@@ -84,46 +89,47 @@ const Movies = () => {
                         </div>
                     </>
                     : auth && account.role === 'USER' ?
-                    <>
-                        <div className="cards">
-                            {movies.map(movie => (
-                                <>
-                                    <div className="card">
-                                        <h2 className="card-title">{movie.title}</h2>
-                                        <img src={movie.image} alt="" />
-                                        <p className="card-desc">
-                                            Year: {movie.year}<br /><br />
-                                            Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
-                                            {movie.description}<br /><br />
-                                            Duration: {movie.duration}<br /><br /></p>
-                                        <h4>Insert number of seat:</h4>
-                                        <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
-                                        <div className="buttons">
-                                            <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                        <>
+                            <div className="cards">
+                                {movies.map(movie => (
+                                    <>
+                                        <div className="card">
+                                            <h1>{message}</h1>
+                                            <h2 className="card-title">{movie.title}</h2>
+                                            <img src={movie.image} alt="" />
+                                            <p className="card-desc">
+                                                Year: {movie.year}<br /><br />
+                                                Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
+                                                {movie.description}<br /><br />
+                                                Duration: {movie.duration}<br /><br /></p>
+                                            <h4>Insert number of seat:</h4>
+                                            <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
+                                            <div className="buttons">
+                                                <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </>
-                            ))}
-                        </div>
-                    </>
-                    :
-                    <>
-                        <div className="cards">
-                            {movies.map(movie => (
-                                <>
-                                    <div className="card">
-                                        <h2 className="card-title">{movie.title}</h2>
-                                        <img src={movie.image} alt="" />
-                                        <p className="card-desc">
-                                            Year: {movie.year}<br /><br />
-                                            Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
-                                            {movie.description}<br /><br />
-                                            Duration: {movie.duration}<br /><br /></p>
-                                    </div>
-                                </>
-                            ))}
-                        </div>
-                    </>
+                                    </>
+                                ))}
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="cards">
+                                {movies.map(movie => (
+                                    <>
+                                        <div className="card">
+                                            <h2 className="card-title">{movie.title}</h2>
+                                            <img src={movie.image} alt="" />
+                                            <p className="card-desc">
+                                                Year: {movie.year}<br /><br />
+                                                Showing: {format(new Date(movie.showing), 'dd MMMM yyyy')} <br /><br />
+                                                {movie.description}<br /><br />
+                                                Duration: {movie.duration}<br /><br /></p>
+                                        </div>
+                                    </>
+                                ))}
+                            </div>
+                        </>
                 }
             </div >
         </>
