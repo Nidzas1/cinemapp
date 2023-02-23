@@ -6,9 +6,7 @@ import Navbar from "../../components/navbar/Navbar";
 const Movie = () => {
 
     const { id } = useParams()
-    const [updated, setUpdated]= useState(-1)
     const [movie, setMovie] = useState([])
-
     const [title, setTitle] = useState('')
     const [year, setYear] = useState('')
     const [description, setDescription] = useState('')
@@ -19,13 +17,11 @@ const Movie = () => {
     const [timePlaying, setTimePlaying] = useState('')
     const [genreId, setGenreId] = useState('')
     const [roomId, setRoomId] = useState('')
-
-    const [message, setMessage] = useState('')
     const [genres, setGenres] = useState([])
     const [rooms, setRooms] = useState([])
-    
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
+    const[message, setMessage] = useState('')
 
     useEffect(() => {
         fetch('http://localhost:5000/movie/' + id)

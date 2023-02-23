@@ -7,15 +7,11 @@ import Navbar from "../../components/navbar/Navbar";
 const Movies = () => {
 
     const [movies, setMovies] = useState([])
-
     const [newMovie, setNewMovie] = useState(false)
     const [seats, setSeats] = useState([])
-
     const [message, setMessage] = useState('')
-
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
-
     const [number, setNumber] = useState('')
 
     useEffect(() => {
@@ -31,7 +27,6 @@ const Movies = () => {
 
 
     const deleteMovie = (movieId) => {
-
         try {
             axios.delete(`http://localhost:5000/deleteMovies/${movieId}`)
                 .then(console.log(movieId))

@@ -14,16 +14,16 @@ export default function ListItem({index}) {
     onMouseEnter={() => setIsHovered(true)} 
     onMouseLeave={() => setIsHovered(false)}>
       {index=="0"?
-       <img src="https://richardlangworth.com/wp-content/uploads/2017/12/darkest-hour-poster-2.jpg" alt="" />
-       : index=="1"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       : index=="2"? <img src="https://scoutlife.org/wp-content/uploads/2011/04/movies-featured.jpg?w=650" alt="" />
-       : index=="3"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       : index=="4"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       : index=="5"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       : index=="6"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       : index=="7"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       : index=="8"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
-       :  <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       <img src=" https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS4LOBdltP7rNDmLqOn9_Ak2lTNbmWP8K8-4RHSb5m6j2UyBw-p" alt="" />
+       : index=="1"? <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSu_HQf7Sgkij6NptUWlEKf6V9n5bC5cL1JfGFNylGC8VnfN_-N" alt="" />
+       : index=="2"? <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHXnPFszcpNapxaCWUSBl3LZezeb-9X_HUKcefCmNZfbPZzmZ5" alt="" />
+       : index=="3"? <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR2mpTrHRvKv-EP4lJLyi2USjKRTtOoy5Hen_j3XhMV5jrjQzxY" alt="" />
+       : index=="4"? <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ_GqhfWoRljq6gxIUpX26YoSGe3PVKZaUF2MEIV7vSVq0sSbA5" alt="" />
+       : index=="5"? <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQvgDcYi5ux-HI__DXXFScylyswVeu0DfMC7owmTYfei9kOtZP2" alt="" />
+       : index=="6"? <img src="https://dx35vtwkllhj9.cloudfront.net/universalstudios/nope/images/gallery/image1.jpg" alt="" />
+       : index=="7"? <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsCOutAlEgJqoCBlWwQv2_JouNTHegA5KnsfRPGeB6_tZlelyk" alt="" />
+       : index=="8"? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJApnr9b8RCQjrOr0YpzqMTY1xXWNrfWHgq0VvNxVNUaG9XyrV" alt="" />
+       :  <img src="https://richardlangworth.com/wp-content/uploads/2017/12/darkest-hour-poster-2.jpg" alt="" />
       
       }
        
