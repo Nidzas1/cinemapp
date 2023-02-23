@@ -10,7 +10,7 @@
         text-align: center;
     }
 
-    .login-box {
+    .reservation-box {
         display: flex;
         justify-content: center;
         align-items: baseline;
@@ -30,7 +30,7 @@
     }
 
 
-    .login-box h2 {
+    .reservation-box h2 {
         margin: 0 0 50px;
         font-size: medium;
         padding: 20;
@@ -40,7 +40,7 @@
     }
 
 
-    .login-box form a {
+    .reservation-box form a {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -55,7 +55,7 @@
         cursor: pointer;
     }
 
-    .login-box a:hover {
+    .reservation-box a:hover {
         background: #550101;
         color: #fff;
         border-radius: 5px;

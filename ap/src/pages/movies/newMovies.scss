@@ -8,17 +8,18 @@
 
 
     .box {
-        position: absolute;
-        left: 50%;
-        top:80%;
-        width: 50%;
-        padding: 40px;
-        transform: translate(-50%, -50%);
-        background: rgba(0,0,0,.5);
-        box-sizing: border-box;
-        box-shadow: 0 15px 25px rgba(0,0,0,.6);
-        border-radius: 10px;
-      }
+      position: absolute;
+      left: 50%;
+      top:100%;
+      width: 50%;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,.5);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+      text-align: center;
+    }
     
       .box h2 {
         margin: 0 0 50px;
@@ -58,6 +59,27 @@
         option{
           background-color: #550101;
         }
+      }
+
+      .box .movie-box .radioButtons{
+        display:flex;
+        width: 100%;
+        padding-top: 50px;
+        font-size: 12px;
+        color: #fff;
+        background-color: #550101;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+
+      }
+      .box .movie-box .date{
+        color-scheme: dark;
+      }
+      .box .movie-box .time{
+        color-scheme: dark;
       }
       .box .movie-box label {
         position: absolute;

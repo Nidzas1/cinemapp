@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import '../../admin/rooms/rooms.scss'
-
+import { Navigate, Link } from "react-router-dom"
 const Rooms = () => {
 
     const [rooms, setRooms] = useState([])
@@ -11,7 +11,7 @@ const Rooms = () => {
     const [auth, setAuth] = useState(false)
 
     const [show, setShow] = useState(true)
-
+    const[newRooms, setNewRooms] = useState(false)
 
     useEffect(() => {
         setAuth(sessionStorage.getItem('auth'))
@@ -29,23 +29,31 @@ const Rooms = () => {
         try {
             axios.delete(`http://localhost:5000/deleteRoom/${roId}`)
                 .then(console.log(roId))
+                window.location.reload(false);
         }
         catch (err) {
             console.log(err)
         }
     }
 
+    if (newRooms) {
+        return (
+            <Navigate to="/admin/newRoom" />
+        )
+    }
     return (
         <>
             {auth && account.role === 'ADMIN' ?
-                <div className='reservations'>
+                <div className='room'>
                     <Navbar />
                     <heading>
                         <h1>Welcome to rooms ADMIN page, {account.username}</h1>
 
                     </heading>
-
-                    <div className="login-box">
+                    <div className="insert">
+                            <button className='button' onClick={() => setNewRooms(true)}>INSERT NEW ROOM</button>
+                        </div>
+                    <div className="room-box">
                         {show ?
                             <form>
                                 <a onClick={showRes}>SHOW ALL ROOMS</a>
@@ -69,7 +77,7 @@ const Rooms = () => {
                         ))}
                     </div>
                 </div>
-                : <div className='reservations'>
+                : <div className='room'>
                     <h2 style={{
                         color: 'white',
                         textAlign: 'center',

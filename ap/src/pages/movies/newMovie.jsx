@@ -14,13 +14,14 @@ const NewMovie = () => {
     const [image, setImage] = useState('')
     const [duration, setDuration] = useState('')
     const [premiere, setPremiere] = useState('')
-    const [showing, setShowing] = useState('')
+    const [showing, setShowing] = useState()
     const [timePlaying, setTimePlaying] = useState('')
     const [genreId, setGenreId] = useState('')
     const [roomId, setRoomId] = useState('')
 
     const [genres, setGenres] = useState([])
     const [rooms, setRooms] = useState([])
+
 
     useEffect(() => {
         setAuth(sessionStorage.getItem('auth'))
@@ -54,7 +55,8 @@ const NewMovie = () => {
                 genre_id: genreId,
                 room_id: roomId
             })
-            console.log(title, year, description, image, duration, premiere, showing, genreId, roomId)
+            window.location.reload(false);
+
         }
         catch (err) {
             console.log(err)
@@ -92,15 +94,18 @@ const NewMovie = () => {
                                     <label>Duration</label>
                                 </div>
                                 <div className="movie-box">
-                                    <input type="text" onChange={e => setPremiere(e.target.value)} />
-                                    <label>Premiere</label>
+                                    <div className="radioButtons" onChange={e => setPremiere(e.target.value)}>
+                                        <input type="radio" value="true" name="premiere" /> Premiere
+                                        <input type="radio" value="false" name="premiere" /> Not premiere
+                                    </div>
+                                    <label style={{fontSize: 12}} >Premiere</label>
                                 </div>
                                 <div className="movie-box">
-                                    <input type="text" onChange={e => setShowing(e.target.value)} />
-                                    <label>Showing</label>
+                                    <input type="date" className='date' onChange={e => setShowing(e.target.value)} />
+                                   <label>Showing</label>
                                 </div>
                                 <div className="movie-box">
-                                    <input type="text" onChange={e => setTimePlaying(e.target.value)} />
+                                    <input type="time" className='time' onChange={e => setTimePlaying(e.target.value)} />
                                     <label>Time playing</label>
                                 </div>
                                 <div className="movie-box">
@@ -119,13 +124,13 @@ const NewMovie = () => {
                                     </select>
                                     <label style={{fontSize: 12}} >Room</label>
                                 </div>
-                                {title=="" || year=="" || description=="" || image=="" || duration=="" || premiere=="" || showing=="" || timePlaying=="" ?
+                                {title=="" || year=="" || description=="" || image=="" || duration=="" ?
                                 <a >
                                 <span></span>
                                 <span></span>
                                 <span></span>
                                 <span></span>
-                                Add all informations
+                                Fill all fields
                             </a>
                             :
                             <a onClick={insertMovie}>

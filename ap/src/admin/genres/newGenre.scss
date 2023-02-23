@@ -1,194 +1,166 @@
-* {
-    margin: 0;
-}
 
-.newMovies {
-    height: 200vh;
-    background: linear-gradient(rgb(0, 0, 0), rgb(85, 2, 2));
+.newGenre{
+  height:200vh;
+  background: linear-gradient(rgb(0,0,0), rgb(85, 2, 2));
 
 
-    .box {
-        position: relative;
-        left: 50%;
-        top: 20%;
-        width: 50%;
-        padding: 40px;
-        transform: translate(-50%, -50%);
-        background: rgba(0, 0, 0, .5);
-        box-sizing: border-box;
-        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-        border-radius: 10px;
+  .genreNew{
+      position: absolute;
+      left: 50%;
+      top:50%;
+      width: 50%;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,.5);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+      text-align: center;
     }
-
-    .box h2 {
-        margin: 0 0 50px;
-        padding: 0;
-        color: #fff;
-        text-align: center;
+    
+    .genreNew h2 {
+      margin: 0 0 50px;
+      padding: 0;
+      color: #fff;
+      text-align: center;
     }
-
-    .box .movie-box {
-        position: relative;
+  
+    .genreNew .info-genreNew {
+      position: relative;
     }
-
-    .box .movie-box input {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background: transparent;
+  
+    .genreNew .info-genreNew input {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #fff;
+      outline: none;
+      background: transparent;
     }
-
-    .box .movie-box select {
-        width: 100%;
-        padding-top: 50px;
-        font-size: 14px;
-        color: #fff;
-        background-color: #550101;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background: transparent;
-
-        option {
-            background-color: #550101;
-        }
+    .genreNew .info-genreNew label {
+      position: absolute;
+      top:0;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      pointer-events: none;
+      transition: .5s;
     }
-
-    .box .movie-box label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        pointer-events: none;
-        transition: .5s;
+  
+    .genreNew .info-genreNew input:focus ~ label,
+    .genreNew .info-genreNew input:valid ~ label {
+      top: -20px;
+      left: 0;
+      color: white;
+      font-size: 12px;
     }
-
-    .box .movie-box input:focus~label,
-    .box .movie-box input:valid~label {
-        top: -20px;
-        left: 0;
-        color: white;
-        font-size: 12px;
+  
+    .genreNew form a {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fcf7f7;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .5s;
+      margin-top: 0px;
+      letter-spacing: 4px;
+      cursor: pointer;
     }
-
-    .box form a {
-        position: relative;
-        display: inline-block;
-        padding: 10px 20px;
-        color: #fcf7f7;
-        font-size: 16px;
-        text-decoration: none;
-        text-transform: uppercase;
-        overflow: hidden;
-        transition: .5s;
-        margin-top: 0px;
-        letter-spacing: 4px;
-        cursor: pointer;
+  
+    .genreNew a:hover {
+      background: #550101;
+      color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #7e0303,
+                  0 0 25px #7e0303,
+                  0 0 50px #7e0303,
+                  0 0 100px #7e0303,
     }
-
-    .box a:hover {
-        background: #550101;
-        color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 5px #7e0303,
-            0 0 25px #7e0303,
-            0 0 50px #7e0303,
-            0 0 100px #7e0303,
+  
+    .genreNew a span {
+      position: absolute;
+      display: block;
     }
-
-    .box a span {
-        position: absolute;
-        display: block;
+  
+    .genreNew a span:nth-child(1) {
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #810000);
+      animation: btn-anim1 1s linear infinite;
     }
-
-    .box a span:nth-child(1) {
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #810000);
-        animation: btn-anim1 1s linear infinite;
-    }
-
+  
     @keyframes btn-anim1 {
-        0% {
-            left: -100%;
-        }
-
-        50%,
-        100% {
-            left: 100%;
-        }
+      0% {
+        left: -100%;
+      }
+      50%,100% {
+        left: 100%;
+      }
     }
-
-    .box a span:nth-child(2) {
-        top: -100%;
-        right: 0;
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(180deg, transparent, #810000, );
-        animation: btn-anim2 1s linear infinite;
-        animation-delay: .25s
+  
+    .genreNew a span:nth-child(2) {
+      top: -100%;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, #810000,);
+      animation: btn-anim2 1s linear infinite;
+      animation-delay: .25s
     }
-
+  
     @keyframes btn-anim2 {
-        0% {
-            top: -100%;
-        }
-
-        50%,
-        100% {
-            top: 100%;
-        }
+      0% {
+        top: -100%;
+      }
+      50%,100% {
+        top: 100%;
+      }
     }
-
-    .box a span:nth-child(3) {
-        bottom: 0;
-        right: -100%;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(270deg, transparent, #000000);
-        animation: btn-anim3 1s linear infinite;
-        animation-delay: .5s
+  
+    .genreNew a span:nth-child(3) {
+      bottom: 0;
+      right: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg, transparent, #000000);
+      animation: btn-anim3 1s linear infinite;
+      animation-delay: .5s
     }
-
+  
     @keyframes btn-anim3 {
-        0% {
-            right: -100%;
-        }
-
-        50%,
-        100% {
-            right: 100%;
-        }
+      0% {
+        right: -100%;
+      }
+      50%,100% {
+        right: 100%;
+      }
     }
-
-    .box a span:nth-child(4) {
-
-        left: 0;
-        width: 2px;
-        height: 100%;
-        background: linear-gradient(360deg, transparent, #000000);
-        animation: btn-anim4 1s linear infinite;
-        animation-delay: .75s
+  
+    .genreNew a span:nth-child(4) {
+     
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(360deg, transparent, #000000);
+      animation: btn-anim4 1s linear infinite;
+      animation-delay: .75s
     }
-
+  
     @keyframes btn-anim4 {
-        0% {
-            bottom: -100%;
-        }
-
-        50%,
-        100% {
-            bottom: 100%;
-        }
+      0% {
+        bottom: -100%;
+      }
+      50%,100% {
+        bottom: 100%;
+      }
     }
 }

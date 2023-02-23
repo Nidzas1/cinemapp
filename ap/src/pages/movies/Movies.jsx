@@ -35,6 +35,7 @@ const Movies = () => {
         try {
             axios.delete(`http://localhost:5000/deleteMovies/${movieId}`)
                 .then(console.log(movieId))
+                window.location.reload(false);
         }
         catch (err) {
             console.log(err)
@@ -60,6 +61,7 @@ const Movies = () => {
             .catch((err) => {
                 setMessage(err.request.response)
             })
+            
     }
 
     if (newMovie) {
@@ -105,7 +107,7 @@ const Movies = () => {
                                 {movies.map(movie => (
                                     <>
                                         <div className="card">
-                                            <h1>{message}</h1>
+                                           
                                             <h2 className="card-title">{movie.title}</h2>
                                             <img src={movie.image} alt="" />
                                             <p className="card-desc">
@@ -114,19 +116,42 @@ const Movies = () => {
                                                 {movie.description}<br /><br />
                                                 Duration: {movie.duration}<br /><br /></p>
                                             <h4>Insert number of seat:</h4>
-                                            <button onClick={() => takenSeats(movie.title)}></button>
-                                            <input type='text' placeholder='Number of seat' onChange={e => setNumber(e.target.value)} className="formControl" />
+                                           
+                                            <input type='text' placeholder='Number of seat'  onChange={e => setNumber(e.target.value)} className="formControl" />
                                             <div className="buttons">
-                                                <button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                                                {number==""?
+                                               <button className="buttonDisabled" disabled onClick={() => reserve(movie.movie_id)}>RESERVE</button>
+                                               
+                                                :<a href="#popup2"><button className="button" onClick={() => reserve(movie.movie_id)}>RESERVE</button></a>
+                                                }
+                                                
+                                                <a href="#popup1"> <button className='button' onClick={() => takenSeats(movie.title)}>Taken seats</button></a>
                                             </div>
                                         </div>
                                     </>
                                 ))}
-                                <h3>{seats.map(seat => (
-                                    <>
-                                        <h1>{seat.seat_number}</h1>
-                                    </>
-                                ))}</h3>
+                                
+                                <div id="popup1" className="overlay">
+                                    <div className="popup">
+                                        <h2>Taken seats</h2>
+                                        <a className="close" href="">&times;</a>
+                                        <div className="content">
+                                        {seats.map(seat => (
+                                            <>
+                                                <h1>{seat.seat_number}</h1>
+                                            </>
+                                        ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="popup2" className="overlay">
+                                    <div className="popup">
+                                        <a class="close" href="">&times;</a>
+                                        <div class="content">
+                                        {message}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </>
                         :

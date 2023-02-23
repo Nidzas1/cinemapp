@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from "../../components/navbar/Navbar";
+import '../../admin/rooms/newRoom.scss'
 
 const NewRoom = () => {
 
@@ -22,6 +23,7 @@ const NewRoom = () => {
                 roomNum: roomNum,
                 seatNum: seatNum
             })
+            window.location.reload(false);
         }
         catch (err) {
             console.log(err)
@@ -30,18 +32,18 @@ const NewRoom = () => {
 
     return (
         <>
-            <div className='newMovies'>
+            <div className='newRoom'>
                 <Navbar />
                 {auth && account.role === 'ADMIN' ?
                     <>
-                        <div className="box">
+                        <div className="roomNew">
                             <h2>New Room</h2>
                             <form>
-                                <div className="movie-box">
+                                <div className="info-roomNew">
                                     <input type="text" onChange={e => setRoomNum(e.target.value)} />
                                     <label>Room number</label>
                                 </div>
-                                <div className="movie-box">
+                                <div className="info-roomNew">
                                     <input type="text" onChange={e => setSeatNum(e.target.value)} />
                                     <label>Seat Number</label>
                                 </div>

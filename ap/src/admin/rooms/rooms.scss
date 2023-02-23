@@ -1,16 +1,48 @@
-.reservations {
+.room {
     height: 200vh;
     background: linear-gradient(rgb(0, 0, 0), rgb(85, 2, 2));
-
-    .reservations,
-    heading {
+    .room, heading {
         color: white;
         position: absolute;
         top: 10%;
         text-align: center;
     }
-
-    .login-box {
+  
+        .insert{
+          width: 100%;
+          padding-top: 10%;
+          height: 5%;
+          display: flex;
+          justify-content: space-around;
+          z-index: 99;
+          .button{
+              position: relative;
+              display: inline-block;
+              padding: 10px 20px;
+              color: #fcf7f7;
+              background-color: #550101;
+              font-size: 16px;
+              text-decoration: none;
+              text-transform: uppercase;
+              overflow: hidden;
+              transition: .5s;
+              margin-top: 0px;
+              letter-spacing: 4px;
+              cursor: pointer;
+          }
+          button:hover {
+              background: #550101;
+              color: #fff;
+              border-radius: 5px;
+              box-shadow: 0 0 5px #7e0303,
+                  0 0 25px #7e0303,
+                  0 0 50px #7e0303,
+                  0 0 100px #7e0303,
+          }
+      }
+    
+  
+    .room-box {
         display: flex;
         justify-content: center;
         align-items: baseline;
@@ -28,9 +60,9 @@
         text-align: center;
         color: white;
     }
-
-
-    .login-box h2 {
+  
+  
+    .room-box h2 {
         margin: 0 0 50px;
         font-size: medium;
         padding: 20;
@@ -38,9 +70,9 @@
         color: #fff;
         text-align: center;
     }
-
-
-    .login-box form a {
+  
+  
+    .room-box form a {
         position: relative;
         display: inline-block;
         padding: 10px 20px;
@@ -54,8 +86,8 @@
         letter-spacing: 4px;
         cursor: pointer;
     }
-
-    .login-box a:hover {
+  
+    .room-box a:hover {
         background: #550101;
         color: #fff;
         border-radius: 5px;
@@ -64,4 +96,4 @@
             0 0 50px #7e0303,
             0 0 100px #7e0303,
     }
-}
+  }

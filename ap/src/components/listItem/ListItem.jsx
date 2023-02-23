@@ -13,7 +13,20 @@ export default function ListItem({index}) {
     style={{left: isHovered && index*225-50 +index*2.5}}
     onMouseEnter={() => setIsHovered(true)} 
     onMouseLeave={() => setIsHovered(false)}>
-        <img src="https://richardlangworth.com/wp-content/uploads/2017/12/darkest-hour-poster-2.jpg" alt="" />
+      {index=="0"?
+       <img src="https://richardlangworth.com/wp-content/uploads/2017/12/darkest-hour-poster-2.jpg" alt="" />
+       : index=="1"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       : index=="2"? <img src="https://scoutlife.org/wp-content/uploads/2011/04/movies-featured.jpg?w=650" alt="" />
+       : index=="3"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       : index=="4"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       : index=="5"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       : index=="6"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       : index=="7"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       : index=="8"? <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+       :  <img src="https://variety.com/wp-content/uploads/2022/12/100-Greatest-Movies-Variety.jpg?w=1360&h=765&crop=1" alt="" />
+      
+      }
+       
         <div className="itemInfo">
         
           <div className="icons">

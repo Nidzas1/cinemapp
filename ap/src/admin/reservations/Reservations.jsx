@@ -45,7 +45,7 @@ const Reservations = () => {
 
                     </heading>
 
-                    <div className="login-box">
+                    <div className="reservation-box">
                         {show ?
                             <form>
                                 <a onClick={showRes}>SHOW ALL RESERVATIONS</a>

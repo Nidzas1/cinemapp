@@ -1,9 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Navbar from "../../components/navbar/Navbar";
-
+import '../../admin/genres/newGenre.scss'
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const NewGenre = () => {
 
+   const navigate= useNavigate();
     const [account, setAccount] = useState('')
     const [auth, setAuth] = useState(false)
 
@@ -20,22 +23,26 @@ const NewGenre = () => {
             axios.post('http://localhost:5000/insertGenre', {
                 genre: genre,
             })
+            window.location.reload(false);
+            
+            
         }
         catch (err) {
             console.log(err)
         }
+        
     }
 
     return (
         <>
-            <div className='newMovies'>
+            <div className='newGenre'>
                 <Navbar />
                 {auth && account.role === 'ADMIN' ?
                     <>
-                        <div className="box">
+                        <div className="genreNew">
                             <h2>New genre</h2>
                             <form>
-                                <div className="movie-box">
+                                <div className="info-genreNew">
                                     <input type="text" onChange={e => setGenre(e.target.value)} />
                                     <label>Genre</label>
                                 </div>

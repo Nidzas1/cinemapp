@@ -21,6 +21,9 @@ const Navbar = () => {
   const [movies, setMovies] = useState(false);
   const [prices, setPrices] = useState(false);
   const [reservations, setReservations] = useState(false);
+  const [genre, setGenre] = useState(false);
+  const [reservationAdmin, setReservationAdmin] = useState(false);
+  const [rooms, setRooms] = useState(false);
 
   useEffect(() => {
     setAuth(sessionStorage.getItem('auth'))
@@ -68,6 +71,17 @@ const Navbar = () => {
     return <Navigate to="/reservations" />
   }
 
+  if (reservationAdmin) {
+    return <Navigate to="/admin/reservations" />
+  }
+
+  if (genre) {
+    return <Navigate to="/admin/genres" />
+  }
+
+  if (rooms) {
+    return <Navigate to="/admin/rooms" />
+  }
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
@@ -78,7 +92,16 @@ const Navbar = () => {
           <span onClick={() => setPremiere(true)}>Premiere</span>
           <span onClick={() => setMovies(true)}>Movies</span>
           <span onClick={() => setPrices(true)}>Prices</span>
-          <span onClick={() => setReservations(true)}>Reservations</span>
+          {auth && account.role === 'ADMIN' ?
+           <>
+           <span onClick={() => setReservationAdmin(true)}>Reservations</span>
+           <span onClick={() => setGenre(true)}>Genre</span>
+           <span onClick={() => setRooms(true)}>Rooms</span>
+           </>
+           :
+           <span onClick={() => setReservations(true)}>Reservations</span>
+          }
+          
         </div>
         <div className="right">
           {auth? <KeyboardReturnTwoTone className="icon"  onClick={logout}/>

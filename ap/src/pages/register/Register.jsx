@@ -40,8 +40,10 @@ export default function Register() {
         setMessage(err.request.response)
       })
 
-    console.log("succesfull")
-
+      .then(() => {
+        navigate('/login')
+    })
+    
   }
 
 

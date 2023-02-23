@@ -33,6 +33,7 @@ const Reservations = () => {
         try {
             axios.delete(`http://localhost:5000/deleteReservation/${resId}`)
                 .then(res => setMessage(res.data.message))
+                window.location.reload(false);
         }
         catch (err) {
             setMessage(err.request.response)
