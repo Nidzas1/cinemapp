@@ -80,8 +80,7 @@ const Movie = () => {
                 genreId: genreId,
                 roomId: roomId,
             })
-            console.log(title, year, description, image, duration, premiere, showing, timePlaying, genreId, roomId)
-   
+            window.location.reload(false);
             
         }
         catch (err) {
