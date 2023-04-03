@@ -8,10 +8,7 @@ const bcrypt = require('bcrypt')
 const { Client } = require('pg');
 
 const db = new Client({
-    host: 'localhost',
-    user: 'postgres',
-    password: 'Biologija1`',
-    database: 'postgres'
+    // DATABASE INFO GOES HERE
 })
 
 db.connect()
